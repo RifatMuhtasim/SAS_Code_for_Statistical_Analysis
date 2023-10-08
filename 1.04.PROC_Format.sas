@@ -86,3 +86,24 @@ PROC Freq data = test;
     FORMAT ques $groupdata.;
     table ques;
 RUN;
+
+
+/* Using Labels */
+data test;
+    input Date Dollar Miles Gender $;
+    label Date = "Date of Hire"
+        Dollar = "Dollar Salary"
+        Miles = "Miles Driven"
+        Gender = "Gender of Employee";
+    Datalines;
+    12331 234342 23425 M 
+    34534 234342 16234 F 
+    21343 234234 23434 M
+    ;
+
+PROC PRINT data = test label;
+FORMAT gender $gender. 
+        date mmddyy8.
+        dollar dollar12.2
+        miles comma8.;
+RUN;
