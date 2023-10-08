@@ -65,15 +65,24 @@ FORMAT gender $gender. dob mmddyy8.
 RUN;
 
 
+/* Using Formats for Group Data */
 data test;
-    input Date Dollar Miles Gender $;
+    input Date Dollar Miles Gender $ Ques $;
     FORMAT gender $gender. dob mmddyy8.
         dollar dollar12.2 miles comma8.;
     datalines;
-    12331 234342 23425 M
-    34534 234342 16234 F
-    21343 234234 23434 M;
+    12331 234342 23425 M Always
+    34534 234342 16234 F Mostly 
+    21343 234234 23434 M Never;
 RUN;
 
-PROC FREQ data = test;
-    
+PROC Format;
+    value $groupdata.
+    'Always', 'Mostly' = 'Like'
+    'Rarely', 'Never' = 'Dislike';
+RUN;
+
+PROC Freq data = test;
+    FORMAT ques $groupdata.;
+    table ques;
+RUN;
