@@ -53,3 +53,49 @@ dataset
  VAR statement indicates 
 which variable(s) to include
 */
+
+
+
+/*
+PROC PRINT: PROC Print can be used to list the data in a SAS dataset
+
+Many options to control output of PROC Print
+    noobs – Suppresses “OBS” column in output
+    (obs=2) – Only prints the first two observations
+    Can put in any number: 1 through N
+    Must be placed in parentheses after data= option
+   var statement – Only prints listed variables
+
+*/
+
+PROC PRINT data=mydata;
+run;
+
+PROC PRINT noobs data=mydata(obs=2);
+var Height Weight;
+run;
+
+
+/*
+PROC CONTENTS: PROC Contents can be used to display the metadata (descriptor portion) of the SAS dataset
+- # : Variable number
+- Type: Numeric or Characteristic
+- Format: How to data is displayed
+- Informat: How the data was read by SAS
+
+varnum :- Show the list of the Variables
+*/
+
+PROC CONTENTS;
+RUN;
+
+PROC CONTENTS VARNUM;
+RUN;
+
+
+
+/*
+PROC FREQ :  can be used to run simple frequency tables on your data
+
+*/
+
