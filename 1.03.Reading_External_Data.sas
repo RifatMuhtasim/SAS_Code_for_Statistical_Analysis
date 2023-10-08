@@ -34,3 +34,22 @@ run;
 title 'Company Data';
 proc print data=company;
 run;
+
+
+
+/* txt
+Reading Data from a text file 
+infile - Where to find data
+input - Variable name associated with each data value
+*/
+
+data demography_bd;
+	infile "/home/u63602459/Mydata.txt";
+	input @1 Gender $  /* Indicates starting column */ 
+		Fullname 2-4 /* Indicates starting and ending columns */ 
+		Height 3. /* Indicates the formate width = 3 and . = No decimal */
+  		date_of_birth mmddyy8 /* indicates formate (How to read the input data value) */
+		Weight;
+run;
+
+
