@@ -58,3 +58,22 @@ PROC FORMAT;
     300 <- 600 = "Average"
     600 - high = "Above Average";
 RUN;
+
+/* Using Formats */
+FORMAT gender $gender. dob mmddyy8.
+    dollar dollar12.2 miles comma8.;
+RUN;
+
+
+data test;
+    input Date Dollar Miles Gender $;
+    FORMAT gender $gender. dob mmddyy8.
+        dollar dollar12.2 miles comma8.;
+    datalines;
+    12331 234342 23425 M
+    34534 234342 16234 F
+    21343 234234 23434 M;
+RUN;
+
+PROC FREQ data = test;
+    
