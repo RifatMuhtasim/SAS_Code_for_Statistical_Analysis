@@ -42,13 +42,3 @@ run;
 
 
 
-/*
-- “DATA newdemo” creates a dataset called “newdemo”
-- “SET demographic” references the previous dataset “demographic” as the basis for the new dataset
--  “BMI =” creates a new variable called “BMI” that is  calculated as shown. This is called an assignment statement.
-*/
-
-data Bmi_date; set Demographic;
-BMI = (Weight / 2.2) / (Height * 0.0254) ** 2;
-run;
-
