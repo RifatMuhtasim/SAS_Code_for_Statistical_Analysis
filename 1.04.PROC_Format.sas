@@ -6,10 +6,10 @@ replace = Overwritten SAS Data.
 GETNAMES = Use the first record as a variable name.
 */
 
-PROC IMPORT OUT=work.test
-    DATAFILES = "/home/u63602459/Mydata.txt"
+PROC IMPORT OUT=salary_data
+    DATAFILE = "/home/u63602459/odsexample.csv"
     DBMS=CSV replace;
-  GETNAMES=yes;
+	GETNAMES=yes;
 RUN;
 
 
@@ -29,6 +29,7 @@ PROC FORMAT;
     2= "No"
     3= "N/A";
 RUN;
+
 
 /* PROC FORMAT Groupdata */
 PROC FORMAT;
