@@ -6,13 +6,20 @@ ELSE <Z>;
 grade = assignment statement use to create a new variable
 */
 
-IF score >= 40 THEN grade="Passed";
-ELSE grade="Failed";
 
-IF score >= 60 THEN grade="First Class";
-ELSE IF 40 <= score < 60 THEN grade = "Second Class";
-ELSE grade="Failed";
+DATA hello_data;
+	SET mydata;
+	IF Age >= 30 THEN grade="Passed";
+	ELSE grade="Failed";
+RUN;
 
+
+PROC PRINT DATA=hello_data;
+RUN;
+
+
+
+/* Use IF, Else if and Else */
 
 data AgeGroup;
   set test_data;
@@ -22,19 +29,21 @@ data AgeGroup;
   else if age > 18 and gender = "M" then group = "Adult - Male";
 RUN;
 
+PROC PRINT DATA=AgeGroup;
+run;
+
+
 
 /* Subsetting Condition
 Can be used both if and where condition
 */
 
 DATA minors; 
-  SET test_data;
-  IF age < 18;
+  SET mydata;
+  IF Age <28;
 RUN;
 
-DATA minors; 
-  SET test_data;
-  WHERE age < 18;
+PROC PRINT data=minors;
 RUN;
 
 
@@ -46,7 +55,7 @@ data mydata;
    input Name $ Age Height Weight Gender $;
    if Gender = "F";
    datalines;
-John 25 175 70 M
+John 25 175 70 F
 Alice 30 162 55 F
 Bob 28 180 80 M
 ;
@@ -57,13 +66,11 @@ Use in data step to bring in only the selected observations when using an input 
 */
 
 PROC PRINT data = mydata;
-WHERE Age > 28;
+  WHERE Age > 28;
 RUN;
 
 
-/* Selecting Variables
-
-*/
+/* Selecting Variables */
 data demo;
   set test_scores;
   drop gender;
