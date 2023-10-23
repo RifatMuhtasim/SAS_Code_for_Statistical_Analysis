@@ -23,6 +23,12 @@ PROC FORMAT;
     "F" = "Female";
 RUN;
 
+PROC PRINT data = mydata;
+    FORMAT Gender $Gender.;
+RUN;
+
+
+
 PROC FORMAT;
     VALUE YNscale /* There is no $ so the value is numerical */
     1= "Yes"
@@ -60,32 +66,36 @@ PROC FORMAT;
     600 - high = "Above Average";
 RUN;
 
-/* Using Formats */
+
+/* Using Formats on Print*/
+PROC PRINT DATA=mydata;
 FORMAT gender $gender. dob mmddyy8.
     dollar dollar12.2 miles comma8.;
 RUN;
 
 
+
 /* Using Formats for Group Data */
 data test;
     input Date Dollar Miles Gender $ Ques $;
-    FORMAT gender $gender. dob mmddyy8.
-        dollar dollar12.2 miles comma8.;
+    FORMAT Dollar dollar12.2 Miles comma8.;
     datalines;
     12331 234342 23425 M Always
     34534 234342 16234 F Mostly 
-    21343 234234 23434 M Never;
+    21343 234234 23434 M Never
+;
 RUN;
 
+
 PROC Format;
-    value $groupdata.
+    value $groupdata
     'Always', 'Mostly' = 'Like'
     'Rarely', 'Never' = 'Dislike';
 RUN;
 
-PROC Freq data = test;
+
+PROC PRINT data = test;
     FORMAT ques $groupdata.;
-    table ques;
 RUN;
 
 
@@ -100,11 +110,11 @@ data test;
     12331 234342 23425 M 
     34534 234342 16234 F 
     21343 234234 23434 M
-    ;
+;
 
 PROC PRINT data = test label;
-FORMAT gender $gender. 
-        date mmddyy8.
-        dollar dollar12.2
-        miles comma8.;
+FORMAT Gender $gender. 
+        Date mmddyy8.
+        Dollar dollar12.2
+        Miles comma8.;
 RUN;
