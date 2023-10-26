@@ -1,3 +1,10 @@
+PROC IMPORT OUT= inspections;
+    	DATAFILE = "/home/u63602459/timeexample.csv"
+    	DBMS=CSV replace;
+	GETNAMES=yes;
+RUN;
+
+
 /* Reading date from dataset 'DDMONCCYY'd */
 DATA five_years;
 	SET inspections;
