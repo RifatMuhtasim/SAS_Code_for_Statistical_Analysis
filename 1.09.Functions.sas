@@ -61,7 +61,7 @@ RUN;
 /* Function vs PROC's */ 
 DATA mean_result;
 	SET Final;
-	means = mean(quiz1, quiz2, quiz3);
+	means = mean(quiz1, quiz2, quiz3); /* Here mean is a function */
 RUN;
 
 
